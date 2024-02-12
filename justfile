@@ -1,7 +1,7 @@
 # Default Applications directory
 
 helm_apps_dir := "apps"
-helm_timeout := "1m"
+helm_timeout := "555m"
 
 # Kind configuration
 
