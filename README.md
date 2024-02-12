@@ -54,4 +54,4 @@ $ just _kind-update_context  # To change kubernetes context to the right environ
 
 ArgoCD is part of the components that will be installed by default in the cluster, to remove the hassle of having to deal with admin credentials and https, we've made some changes in the application to allow anonymous access as admin and avoid TLS, we know this is not secure but it is just to speed things up! ✈
 
-You can get access to ArgoCD at [http://argocd.127.0.0.1.nip.io](http://argocd.127.0.0.1.nip.io)
+You can get access to ArgoCD at [http://argocd.apps.27.0.0.1.nip.io](http://argocd.apps.127.0.0.1.nip.io)
