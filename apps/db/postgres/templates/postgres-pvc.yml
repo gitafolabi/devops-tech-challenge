@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "todo-data.fullname" . }}
+  labels:
+    app: todo-data-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.postgres.storageSize }}
+  storageClassName: {{ .Values.storageClass.name }}
+  volumeName: {{ .Values.postgres.volumeName }}
