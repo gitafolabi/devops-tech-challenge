@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "todo-api.fullname" . }}
+  name: {{ .Values.backend.deploy.name }}-deploy
   labels:
-    {{- include "todo-api.labels" . | nindent 4 }}
+    app: {{ .Values.backend.labels.app }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.backend.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "todo-api.selectorLabels" . | nindent 6 }}
+      app: {{ .Values.backend.labels.app }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "todo-api.selectorLabels" . | nindent 8 }}
+        app: {{ .Values.backend.labels.app }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "todo-api.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.backend.labels.app }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -32,7 +32,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.backend.image.name }}:{{ .Values.backend.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.backend.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.backend.port }}

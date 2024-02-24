@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "todo-list.fullname" . }}
+  name: {{ .Values.frontend.labels.app }}-deploy
   labels:
-    {{- include "todo-list.labels" . | nindent 4 }}
+    app: {{ .Values.frontend.labels.app }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.frontend.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
@@ -32,7 +32,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.frontend.image.name }}:{{ .Values.frontend.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.frontend.image.pullPolicy }}
           ports:
             - name: http
               containerPort: {{ .Values.frontend.port }}

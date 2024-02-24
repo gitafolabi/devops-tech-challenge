@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-list
+spec:
+  destination:
+    name: ''
+    namespace: todo-list
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: apps/todo-list
+    repoURL: 'https://github.com/gitafolabi/devops-tech-challenge.git'
+    targetRevision: HEAD
+  project: todo-list
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false

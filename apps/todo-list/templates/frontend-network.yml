@@ -1,9 +1,11 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ include "todo-list.fullname" . }}
+  name: {{ .Values.frontend.labels.app }}-policy
   labels:
-    app: todo-list-network-policy
+    app: {{ .Values.frontend.labels.app }}
+  # labels:
+  #   app: todo-list-network-policy
     
 spec:
   podSelector:
