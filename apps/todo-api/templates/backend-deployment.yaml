@@ -24,7 +24,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ .Values.backend.labels.app }}
+      # serviceAccountName: {{ .Values.backend.deploy.name }}-serviceaccount
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -45,6 +45,9 @@ spec:
             httpGet:
               path: /
               port: http
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.backend.deploy.name }}-cm
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

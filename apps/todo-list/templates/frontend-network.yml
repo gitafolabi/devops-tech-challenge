@@ -4,8 +4,7 @@ metadata:
   name: {{ .Values.frontend.labels.app }}-policy
   labels:
     app: {{ .Values.frontend.labels.app }}
-  # labels:
-  #   app: todo-list-network-policy
+
     
 spec:
   podSelector:
