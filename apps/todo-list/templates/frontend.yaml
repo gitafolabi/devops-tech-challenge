@@ -11,16 +11,8 @@ spec:
   project: default
   source:
     helm:
-      parameters:
-        - name: build.enabled
-          value: "false"
-        - name: deploy.route.enabled
-          value: "false"
-        - name: image.name
-          value: quay.io/redhatworkshops/gitops-helm-quarkus
-    chart: todo-list
     path: apps/todo-list
-    repoURL: 'https://github.com/gitafolabi/devops-tech-challenge.git'
+    repoURL: 'https://github.com/gitafolabi/devops-tech-challenge'
     targetRevision: HEAD
   syncPolicy:
     retry:
