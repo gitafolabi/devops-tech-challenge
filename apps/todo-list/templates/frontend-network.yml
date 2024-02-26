@@ -13,6 +13,12 @@ spec:
   policyTypes:
     - Ingress
   ingress:
-    - ports:
-        - protocol: TCP
-          port: 3000
+    - from:
+      ports:
+      - protocol: TCP
+        port: 8000
+  egress:
+    - to:
+      ports:
+      - protocol: TCP
+        port: 5432

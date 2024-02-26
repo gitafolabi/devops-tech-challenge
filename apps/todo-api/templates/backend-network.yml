@@ -13,6 +13,14 @@ spec:
     - Ingress
     - Egress
   ingress:
-    - ports:
-        - protocol: TCP
-          port: 8000
+    - from:
+      - ipBlock:
+        cidr: *
+      ports:
+      - protocol: TCP
+        port: 8000
+  egress:
+    - to:
+      ports:
+      - protocol: TCP
+        port: 5432
