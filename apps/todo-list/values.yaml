@@ -2,7 +2,7 @@ frontend:
   labels:
     app: todo-list
   image:
-    name: docker.io/gigpops/fe-applet
+    name: gigpops/fe-applet
     pullPolicy: IfNotPresent
     tag: latest
   port: 3000

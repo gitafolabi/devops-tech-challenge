@@ -2,7 +2,7 @@ backend:
   labels:
     app: todo-api
   image: 
-    name: docker.io/gigpops/be-applet
+    name: gigpops/be-applet
     pullPolicy: IfNotPresent
     tag: latest
   port: 8000
