@@ -1,24 +1,19 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: {{ .Values.backend.deploy.name }}-policy
+  name: {{ .Values.postgres.labels.app }}-policy
   labels:
-    app: {{ .Values.backend.labels.app }}
+    app: {{ .Values.postgres.labels.app }}
 
 spec:
   podSelector:
     matchLabels:
-      role: {{ .Values.backend.labels.app }}
+      role: {{ .Values.postgres.labels.app }}
   policyTypes:
     - Ingress
     - Egress
   ingress:
     - from:
-      ports:
-      - protocol: TCP
-        port: 8000
-  egress:
-    - to:
       ports:
       - protocol: TCP
         port: 5432

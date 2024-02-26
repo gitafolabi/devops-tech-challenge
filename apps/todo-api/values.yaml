@@ -30,17 +30,16 @@ backend:
 
 
 postgres:
+  labels:
+    app: todo-db
   enabled: true
   image:
     name: postgres
     tag: 
   auth:
       host: "postgres"
-      # -- Sets postgres username
-      user: "sg"
-      # -- Sets postgres password
-      password: "password"
-      # -- Sets postgres port
+      user: "admin"
+      db-password: "password"
       port: "5432"
 
 ingress:

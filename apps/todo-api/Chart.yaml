@@ -9,7 +9,3 @@ kubeVersion: ">= 1.21.0-0"
 maintainers:
   - name: Afolabi Omotoso
     email: afolabi88@gmail.com
-dependencies:
-  - name: postgresql
-    repository: https://charts.bitnami.com/bitnami
-    version: 14.2.1
