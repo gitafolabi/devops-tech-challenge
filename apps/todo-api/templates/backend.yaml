@@ -2,8 +2,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: {{ .Values.frontend.labels.app }}
+  name: {{ .Values.backend.labels.app }}
   namespace: argocd
+#   finalizers:
+#     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: todo-api
@@ -11,16 +13,8 @@ spec:
   project: default
   source:
     helm:
-      parameters:
-        - name: build.enabled
-          value: "false"
-        - name: deploy.route.enabled
-          value: "false"
-        - name: image.name
-          value: quay.io/redhatworkshops/gitops-helm-quarkus
-    chart: todo-api
     path: apps/todo-api
-    repoURL: 'https://github.com/gitafolabi/devops-tech-challenge.git'
+    repoURL: 'https://github.com/gitafolabi/devops-tech-challenge'
     targetRevision: HEAD
   syncPolicy:
     retry:
